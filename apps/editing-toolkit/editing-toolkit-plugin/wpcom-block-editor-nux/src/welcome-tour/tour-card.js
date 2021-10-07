@@ -23,19 +23,19 @@ const useEffectOnlyOnce = ( func ) => useEffect( func, [] );
 
 function WelcomeTourCard( {
 	cardContent,
-	currentCardIndex,
+	currentStepIndex,
 	justMaximized,
-	lastCardIndex,
+	lastStepIndex,
 	onMinimize,
 	onDismiss,
 	setJustMaximized,
-	setCurrentCardIndex,
+	setCurrentStepIndex,
 	onNextCardProgression,
 	onPreviousCardProgression,
 	isGutenboarding,
 } ) {
 	const { description, heading, imgSrc } = cardContent;
-	const isLastCard = currentCardIndex === lastCardIndex;
+	const isLastStep = currentStepIndex === lastStepIndex;
 
 	// Ensure tracking is recorded once per slide view
 	useEffectOnlyOnce( () => {
@@ -46,8 +46,8 @@ function WelcomeTourCard( {
 		}
 
 		recordTracksEvent( 'calypso_editor_wpcom_tour_slide_view', {
-			slide_number: currentCardIndex + 1,
-			is_last_slide: isLastCard,
+			slide_number: currentStepIndex + 1,
+			is_last_slide: isLastStep,
 			slide_heading: heading,
 			is_gutenboarding: isGutenboarding,
 		} );
@@ -63,11 +63,11 @@ function WelcomeTourCard( {
 				<h2 className="welcome-tour-card__heading">{ heading }</h2>
 				<p className="welcome-tour-card__description">
 					{ description }
-					{ isLastCard ? (
+					{ isLastStep ? (
 						<Button
 							className="welcome-tour-card__description"
 							isTertiary
-							onClick={ () => setCurrentCardIndex( 0 ) }
+							onClick={ () => setCurrentStepIndex( 0 ) }
 						>
 							{ __( 'Restart tour', 'full-site-editing' ) }
 						</Button>
@@ -75,14 +75,14 @@ function WelcomeTourCard( {
 				</p>
 			</CardBody>
 			<CardFooter>
-				{ isLastCard ? (
+				{ isLastStep ? (
 					<TourRating isGutenboarding={ isGutenboarding }></TourRating>
 				) : (
 					<CardNavigation
-						currentCardIndex={ currentCardIndex }
-						lastCardIndex={ lastCardIndex }
+						currentStepIndex={ currentStepIndex }
+						lastStepIndex={ lastStepIndex }
 						onDismiss={ onDismiss }
-						setCurrentCardIndex={ setCurrentCardIndex }
+						setCurrentStepIndex={ setCurrentStepIndex }
 						onNextCardProgression={ onNextCardProgression }
 						onPreviousCardProgression={ onPreviousCardProgression }
 					></CardNavigation>
@@ -93,10 +93,10 @@ function WelcomeTourCard( {
 }
 
 function CardNavigation( {
-	currentCardIndex,
-	lastCardIndex,
+	currentStepIndex,
+	lastStepIndex,
 	onDismiss,
-	setCurrentCardIndex,
+	setCurrentStepIndex,
 	onNextCardProgression,
 	onPreviousCardProgression,
 } ) {
@@ -108,12 +108,12 @@ function CardNavigation( {
 	return (
 		<>
 			<PaginationControl
-				currentPage={ currentCardIndex }
-				numberOfPages={ lastCardIndex + 1 }
-				setCurrentPage={ setCurrentCardIndex }
+				currentPage={ currentStepIndex }
+				numberOfPages={ lastStepIndex + 1 }
+				setCurrentPage={ setCurrentStepIndex }
 			/>
 			<div>
-				{ currentCardIndex === 0 ? (
+				{ currentStepIndex === 0 ? (
 					<Button isTertiary={ true } onClick={ onDismiss( 'no-thanks-btn' ) }>
 						{ __( 'Skip', 'full-site-editing' ) }
 					</Button>
@@ -128,7 +128,7 @@ function CardNavigation( {
 					isPrimary={ true }
 					onClick={ onNextCardProgression }
 				>
-					{ currentCardIndex === 0 ? startTourLabel : nextLabel }
+					{ currentStepIndex === 0 ? startTourLabel : nextLabel }
 				</Button>
 			</div>
 		</>
