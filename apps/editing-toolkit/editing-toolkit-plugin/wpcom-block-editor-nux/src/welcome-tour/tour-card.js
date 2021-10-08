@@ -30,8 +30,8 @@ function WelcomeTourCard( {
 	onDismiss,
 	setJustMaximized,
 	setCurrentStepIndex,
-	onNextCardProgression,
-	onPreviousCardProgression,
+	onNextStepProgression,
+	onPreviousStepProgression,
 	isGutenboarding,
 } ) {
 	const { description, heading, imgSrc } = cardContent;
@@ -83,8 +83,8 @@ function WelcomeTourCard( {
 						lastStepIndex={ lastStepIndex }
 						onDismiss={ onDismiss }
 						setCurrentStepIndex={ setCurrentStepIndex }
-						onNextCardProgression={ onNextCardProgression }
-						onPreviousCardProgression={ onPreviousCardProgression }
+						onNextStepProgression={ onNextStepProgression }
+						onPreviousStepProgression={ onPreviousStepProgression }
 					></CardNavigation>
 				) }
 			</CardFooter>
@@ -97,8 +97,8 @@ function CardNavigation( {
 	lastStepIndex,
 	onDismiss,
 	setCurrentStepIndex,
-	onNextCardProgression,
-	onPreviousCardProgression,
+	onNextStepProgression,
+	onPreviousStepProgression,
 } ) {
 	// These are defined on their own lines because of a minification issue.
 	// __('translations') do not always work correctly when used inside of ternary statements.
@@ -118,7 +118,7 @@ function CardNavigation( {
 						{ __( 'Skip', 'full-site-editing' ) }
 					</Button>
 				) : (
-					<Button isTertiary={ true } onClick={ onPreviousCardProgression }>
+					<Button isTertiary={ true } onClick={ onPreviousStepProgression }>
 						{ __( 'Back', 'full-site-editing' ) }
 					</Button>
 				) }
@@ -126,7 +126,7 @@ function CardNavigation( {
 				<Button
 					className="welcome-tour-card__next-btn"
 					isPrimary={ true }
-					onClick={ onNextCardProgression }
+					onClick={ onNextStepProgression }
 				>
 					{ currentStepIndex === 0 ? startTourLabel : nextLabel }
 				</Button>
