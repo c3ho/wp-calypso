@@ -135,33 +135,31 @@ function WelcomeTourFrame() {
 				tourContainerRef={ tourContainerRef }
 				isMinimized={ isMinimized }
 			/>
-			{ /* @todo: Rethink the design here a bit - idealy split between minimized and step-tour components */ }
-			{ ! isMinimized && <div className="wpcom-editor-welcome-tour__screen-overlay" /> }
-			<div
-				className="wpcom-editor-welcome-tour-frame"
-				ref={ tourContainerRef }
-				{ ...stepRepositionProps }
-			>
-				{ ! isMinimized ? (
-					<>
-						<WelcomeTourCard
-							cardContent={ steps[ currentStepIndex ].meta }
-							currentStepIndex={ currentStepIndex }
-							justMaximized={ justMaximized }
-							key={ currentStepIndex }
-							lastStepIndex={ lastStepIndex }
-							onDismiss={ handleDismiss }
-							onMinimize={ handleMinimize }
-							setJustMaximized={ setJustMaximized }
-							setCurrentStepIndex={ setCurrentStepIndex }
-							onNextStepProgression={ handleNextStepProgression }
-							onPreviousStepProgression={ handlePreviousStepProgression }
-							isGutenboarding={ isGutenboarding }
-						/>
-					</>
-				) : (
-					<WelcomeTourMinimized onMaximize={ handleMaximize } />
-				) }
+			<div className="wpcom-editor-welcome-tour__container" ref={ tourContainerRef }>
+				{ /* @todo: Rethink the design here a bit - idealy split between minimized and step-tour components */ }
+				{ ! isMinimized && <div className="wpcom-editor-welcome-tour__screen-overlay" /> }
+				<div className="wpcom-editor-welcome-tour-frame" { ...stepRepositionProps }>
+					{ ! isMinimized ? (
+						<>
+							<WelcomeTourCard
+								cardContent={ steps[ currentStepIndex ].meta }
+								currentStepIndex={ currentStepIndex }
+								justMaximized={ justMaximized }
+								key={ currentStepIndex }
+								lastStepIndex={ lastStepIndex }
+								onDismiss={ handleDismiss }
+								onMinimize={ handleMinimize }
+								setJustMaximized={ setJustMaximized }
+								setCurrentStepIndex={ setCurrentStepIndex }
+								onNextStepProgression={ handleNextStepProgression }
+								onPreviousStepProgression={ handlePreviousStepProgression }
+								isGutenboarding={ isGutenboarding }
+							/>
+						</>
+					) : (
+						<WelcomeTourMinimized onMaximize={ handleMaximize } />
+					) }
+				</div>
 			</div>
 		</>
 	);
