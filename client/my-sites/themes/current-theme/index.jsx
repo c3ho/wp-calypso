@@ -9,9 +9,9 @@ import Badge from 'calypso/components/badge';
 import QueryActiveTheme from 'calypso/components/data/query-active-theme';
 import QueryCanonicalTheme from 'calypso/components/data/query-canonical-theme';
 import InlineSupportLink from 'calypso/components/inline-support-link';
+import withBlockEditorSettings from 'calypso/data/block-editor/with-block-editor-settings';
 import { localizeUrl } from 'calypso/lib/i18n-utils';
 import { isFullSiteEditingTheme } from 'calypso/my-sites/themes/is-full-site-editing-theme';
-import isSiteUsingCoreSiteEditorSelector from 'calypso/state/selectors/is-site-using-core-site-editor';
 import { getActiveTheme, getCanonicalTheme } from 'calypso/state/themes/selectors';
 import { trackClick } from '../helpers';
 import { connectOptions } from '../theme-options';
@@ -31,6 +31,11 @@ class CurrentTheme extends Component {
 				getUrl: PropTypes.func,
 			} )
 		),
+		blockEditorSettings: PropTypes.objectOf(
+			PropTypes.shape( {
+				is_fse_eligible: PropTypes.bool,
+			} )
+		),
 		siteId: PropTypes.number.isRequired,
 		// connected props
 		currentTheme: PropTypes.object,
@@ -39,13 +44,7 @@ class CurrentTheme extends Component {
 	trackClick = ( event ) => trackClick( 'current theme', event );
 
 	render() {
-		const {
-			currentTheme,
-			currentThemeId,
-			isSiteUsingCoreSiteEditor,
-			siteId,
-			translate,
-		} = this.props;
+		const { currentTheme, currentThemeId, blockEditorSettings, siteId, translate } = this.props;
 		const placeholderText = <span className="current-theme__placeholder">loading...</span>;
 		const text = currentTheme && currentTheme.name ? currentTheme.name : placeholderText;
 
@@ -58,7 +57,8 @@ class CurrentTheme extends Component {
 		const showScreenshot = currentTheme && currentTheme.screenshot;
 		// Some themes have no screenshot, so only show placeholder until details loaded
 		const showScreenshotPlaceholder = ! currentTheme;
-		const showBetaBadge = isFullSiteEditingTheme( currentTheme ) && isSiteUsingCoreSiteEditor;
+		const isFSEEligible = blockEditorSettings?.is_fse_eligible ?? false;
+		const showBetaBadge = isFullSiteEditingTheme( currentTheme ) && isFSEEligible;
 
 		return (
 			<Card className="current-theme">
@@ -126,17 +126,12 @@ class CurrentTheme extends Component {
 }
 
 const ConnectedCurrentTheme = connectOptions( localize( CurrentTheme ) );
+const CurrentThemeWithEditorSettings = withBlockEditorSettings( ConnectedCurrentTheme );
 
-const CurrentThemeWithOptions = ( {
-	siteId,
-	currentTheme,
-	currentThemeId,
-	isSiteUsingCoreSiteEditor,
-} ) => (
-	<ConnectedCurrentTheme
+const CurrentThemeWithOptions = ( { siteId, currentTheme, currentThemeId } ) => (
+	<CurrentThemeWithEditorSettings
 		currentTheme={ currentTheme }
 		currentThemeId={ currentThemeId }
-		isSiteUsingCoreSiteEditor={ isSiteUsingCoreSiteEditor }
 		siteId={ siteId }
 		source="current theme"
 	/>
@@ -147,6 +142,5 @@ export default connect( ( state, { siteId } ) => {
 	return {
 		currentThemeId,
 		currentTheme: getCanonicalTheme( state, siteId, currentThemeId ),
-		isSiteUsingCoreSiteEditor: isSiteUsingCoreSiteEditorSelector( state, siteId ),
 	};
 } )( CurrentThemeWithOptions );
