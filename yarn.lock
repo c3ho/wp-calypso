@@ -16099,9 +16099,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.1.3, eslint-plugin-jest@npm:^24.3.6, eslint-plugin-jest@npm:^24.5.0":
-  version: 24.5.0
-  resolution: "eslint-plugin-jest@npm:24.5.0"
+"eslint-plugin-jest@npm:^24.1.3, eslint-plugin-jest@npm:^24.3.6, eslint-plugin-jest@npm:^24.7.0":
+  version: 24.7.0
+  resolution: "eslint-plugin-jest@npm:24.7.0"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
@@ -16110,7 +16110,7 @@ __metadata:
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: bc44b5dbdfbb7def300721509c3bf953819dac44fc103357c74b6b17b0f985f16cecb4ecb3b8688fa316793a83f10a95493d614e9965fd129c7cf918fb046c91
+  checksum: e93d92d83b3ee3c1b1252d696668a1c8e3bb4cfefc1acc506103636c2a35cd7d62ebb8eca6a75755b404b23e9506a0a742ad9493cdf1e3ab50e86b69fe2fbda8
   languageName: node
   linkType: hard
 
@@ -16133,9 +16133,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^36.1.0":
-  version: 36.1.0
-  resolution: "eslint-plugin-jsdoc@npm:36.1.0"
+"eslint-plugin-jsdoc@npm:^36.1.1":
+  version: 36.1.1
+  resolution: "eslint-plugin-jsdoc@npm:36.1.1"
   dependencies:
     "@es-joy/jsdoccomment": 0.10.8
     comment-parser: 1.2.4
@@ -16148,7 +16148,7 @@ __metadata:
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0
-  checksum: 9484df98e8294bb0190fe5c5440406952e86d56ba0e30a8413a1362ec2751036b5f503cab1ebd52db56fa508ffbffdfd54886e60425b9c54300e306990b21f0f
+  checksum: 86275a61e1627f3de92ddf69292bc3312eca85f5f924d1b2e509ade990fae67eecea0f8fb5b575fd0fb08f3f1b2877c3c10aa10d5499692d677765499fbeb4e5
   languageName: node
   linkType: hard
 
@@ -16235,9 +16235,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.22.0, eslint-plugin-react@npm:^7.26.0":
-  version: 7.26.0
-  resolution: "eslint-plugin-react@npm:7.26.0"
+"eslint-plugin-react@npm:^7.22.0, eslint-plugin-react@npm:^7.26.1":
+  version: 7.26.1
+  resolution: "eslint-plugin-react@npm:7.26.1"
   dependencies:
     array-includes: ^3.1.3
     array.prototype.flatmap: ^1.2.4
@@ -16255,7 +16255,7 @@ __metadata:
     string.prototype.matchall: ^4.0.5
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7
-  checksum: ac57bb14c1ce0c64201730d053dfb55ccdb11ca03c718b3e8028832ceb6672385ef485f4b97430e6c042e21b000eef12df8512dbd07cd7a8f6aa50140cf5dff7
+  checksum: a14a98135d4f7926787c30461f396dc6a7912f2551142be7b675229c7abe032b183d1d4bbdcbb92ed2c0f7cf5595c9ab87d2fe64b4c5e4aa5d7a6fe3d85c0886
   languageName: node
   linkType: hard
 
@@ -16272,7 +16272,7 @@ __metadata:
     "@babel/core": ">=7.15.0"
     eslint: ">=7.32.0"
     eslint-plugin-inclusive-language: ^2.1.1
-    eslint-plugin-jsdoc: ^36.1.0
+    eslint-plugin-jsdoc: ^36.1.1
     eslint-plugin-react-hooks: ^4.2.0
   languageName: unknown
   linkType: soft
@@ -37580,13 +37580,13 @@ typescript@^4.4.3:
     eslint-nibble: ^7.0.0
     eslint-plugin-import: ^2.24.2
     eslint-plugin-inclusive-language: ^2.1.1
-    eslint-plugin-jest: ^24.5.0
-    eslint-plugin-jsdoc: ^36.1.0
+    eslint-plugin-jest: ^24.7.0
+    eslint-plugin-jsdoc: ^36.1.1
     eslint-plugin-jsx-a11y: ^6.4.1
     eslint-plugin-md: ^1.0.19
     eslint-plugin-mocha: ^9.0.0
     eslint-plugin-prettier: ^3.4.1
-    eslint-plugin-react: ^7.26.0
+    eslint-plugin-react: ^7.26.1
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-wpcalypso: ^5.1.0
     eslint-plugin-you-dont-need-lodash-underscore: ^6.12.0
